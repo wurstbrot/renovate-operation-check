@@ -1,6 +1,6 @@
-# Test Renovate 
-This repo contains package managers.
-This repo is scanned by Renovate and PRs are created. Renovate Operation Test is checking for PRs.
+# Renovate Operation Check
+The repo under test contains package managers (see docs/sample-monitoring-content).
+The repo under test is scanned by Renovate and PRs are created. This Renovate Operation Check is checking for PRs and alerts you if the expected PRs (see `scripts/config/config.yaml`) doesn't exists.
 
 ## Run modes and switches
 
@@ -12,12 +12,6 @@ authoritative one:
 - `--enable-pr-cleanup true` runs the full cleanup (decline renovate PRs,
   delete branches, optionally decline all non-excluded branches). Without it
   the run only deletes already-declined PRs.
-
-The container entrypoint sets **neither** flag, so a plain
-`docker run <image>` only deletes declined PRs. Append the flags in the
-Kubernetes `args` to get the other modes. The `cleanup.*` keys in
-`config.yaml` are the second level: they are only read once
-`--enable-pr-cleanup true` is passed.
 
 ### New PR Checks
 
