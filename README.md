@@ -15,11 +15,17 @@ authoritative one:
 
 ### New PR Checks
 
-Add to config.yaml:
+Adjust your config.yaml:
 
 ```yaml
 pr_checks:
   - name: new_check
     titleRegex: "pattern"
     contentRegex: "pattern"
+```
+e.g.:
+```yaml
+pr_checks:
+  - name: NPM Major
+    titleRegex: 'Update npm \(major\)$'
 ```
