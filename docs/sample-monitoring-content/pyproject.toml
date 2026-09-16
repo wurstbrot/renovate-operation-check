@@ -6,6 +6,6 @@ readme = "README.md"
 requires-python = ">=3.8"
 
 dependencies = [
-    "requests==2.31.0",      # HTTP library for making API calls to Bitbucket
+    "requests==2.33.0",      # HTTP library for making API calls to Bitbucket
     "schedule==1.2.0"       # Job scheduling library for delayed testing
 ]
