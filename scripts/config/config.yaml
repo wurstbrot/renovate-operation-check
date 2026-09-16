@@ -1,0 +1,66 @@
+ca_cert_path: "/etc/ssl/certs/ca-certificates.crt"
+relax_x509_strict: true
+
+client:
+  type: bitbucket_server
+  base_url: ${BITBUCKET_BASE_URL}
+  project_key: ${PROJECT_KEY}
+  repo_slug: "project-renovate-test-content"
+  token: ${RENOVATE_TOKEN}
+  username: ${RENOVATE_USERNAME}
+
+logging:
+  # Timestamps follow the container timezone (set TZ in the deployment).
+  level: INFO
+
+notifications:
+  enabled: true
+  mattermostWebhook:
+    enabled: true
+    webhook_key: ${WEBHOOK_KEY}
+    url: ${MATTERMOST_WEBHOOK_URL}
+    success_msg: false
+    ca_cert_path: "/etc/ssl/certs/ca-certificates.crt"
+
+cleanup:
+  enable_branch_reset: false # testing
+  # branch_reset_target: master
+  # branch_reset_source: reference
+  enable_pr_cleanup: true # Full cleanup mode; requires --enable-pr-cleanup true
+  delete_branches_after_pr_decline: true  # Automatically delete branches after their PRs are declined
+  decline_all_in_pr_cleanup: true # If false, only renovate PRs are declined during cleanup If true, ALL PRs will be declined (except those from excluded branches)
+  exclude_branches:
+    - "org"
+    - "reference"
+    - "main"
+    - "master"
+
+pr_checks:
+  - name: NuGet
+    contentRegex: 'Microsoft.AspNetCore.Authentication.JwtBearer'
+  - name: NPM
+    titleRegex: 'Update npm$'
+  - name: NPM Major
+    titleRegex: 'Update npm \(major\)$'
+  - name: Clojure
+    titleRegex: 'Update deps-edn$'
+  - name: Integrant (deps-edn)
+    contentRegex: 'integrant/integrant'
+  - name: Schedule
+    titleRegex: 'Update dependency .+ to v.+$'
+    contentRegex: 'schedule'
+  - name: PHP Composer
+    titleRegex: 'Update dependency .+/.+ to v.+.*'
+    contentRegex: 'symfony/http-kernel'
+  - name: NPM Security
+    titleRegex: 'Update dependency .+ CVSS-.* \[KNOWN-VULNERABILITY\]$'
+    contentRegex: 'axios|vite'
+  - name: Python Security
+    titleRegex: 'Update dependency .+ CVSS-.* \[KNOWN-VULNERABILITY\]$'
+    contentRegex: 'requests'
+  - name: PHP Composer Security
+    titleRegex: 'Update dependency .+ CVSS-.* \[KNOWN-VULNERABILITY\]$'
+    contentRegex: 'symfony/http-kernel'
+  - name: Maven Security
+    titleRegex: 'Update dependency .+ CVSS-.* \[KNOWN-VULNERABILITY\]$'
+    contentRegex: 'org\.apache\.logging\.log4j:log4j-core'

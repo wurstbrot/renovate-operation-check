@@ -1,0 +1,18 @@
+# Include the README
+include README.md
+include LICENCE
+
+# Include the configuration files
+include scripts/config/config.yaml
+
+# Include test configuration files
+include scripts/tests/.flake8
+include scripts/tests/.bandit.yaml
+include scripts/tests/.bandit-tests.yaml
+include scripts/tests/test_quality.sh
+
+# Exclude all bytecode
+global-exclude *.py[cod]
+global-exclude __pycache__/*
+global-exclude .git/*
+global-exclude .DS_Store

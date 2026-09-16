@@ -1,0 +1,9 @@
+{
+  "name": "beispiel/projekt",
+  "description": "Projekt",
+  "type": "project",
+  "require": {
+    "php": ">=8.0",
+    "symfony/http-kernel": "6.0"
+  }
+}

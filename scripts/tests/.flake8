@@ -1,0 +1,11 @@
+[flake8]
+max-line-length = 100
+# E203/W503 conflict with the black formatter configured in pyproject.toml
+extend-ignore = E501, W503, E203
+exclude =
+    __pycache__,
+    .pytest_cache,
+    venv,
+    .venv,
+    build,
+    dist

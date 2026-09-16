@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "renovate-operation-check"
+version = "1.0.0" # see helm chart for real version
+description = "A testing framework for validating Renovate bot PR creation in Bitbucket repositories"
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+    "requests==2.34.2",
+    "pyyaml==6.0.3",
+    "jsonschema==4.26.0"
+]
+
+[project.scripts]
+renovate-operation-check = "scripts.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "bandit>=1.7.5",
+    "flake8>=6.0.0",
+    "flake8-bandit>=4.1.1",
+    "black>=23.1.0", 
+    "pre-commit>=3.2.0",
+    "detect-secrets>=1.4.0",
+    "isort>=5.12.0"
+]
+test = [
+    "pytest>=7.4.0",         # Testing framework
+    "pytest-timeout>=2.1.0", # Enforces the per-test timeout from pytest.ini
+    "pytest-cov>=4.1.0",     # Test coverage plugin for pytest
+    "pytest-mock>=3.11.0",   # Mock object library for pytest
+]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["scripts*"]
+exclude = ["scripts.tests*"]
+namespaces = false
+
+[tool.black]
+line-length = 100
+target-version = ["py38"]
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | __pycache__
+  | \.pytest_cache
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
