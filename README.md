@@ -12,13 +12,11 @@ itself — a missing PR means Renovate did not do its job.
 
 ```mermaid
 flowchart TD
-    R["Renovate läuft: scannt Repo, erzeugt PRs"] --> C["Renovate Operation Check läuft"]
-    C --> F{"Offene Renovate-PRs vorhanden?"}
-    F -- nein --> A1["Alert: Renovate hat keine PRs erzeugt"]
-    F -- ja --> L["Prüfe jede erwartete PR-Definition aus config.yaml"]
-    L --> D{"Alle erwarteten PRs vorhanden?"}
-    D -- ja --> OK["Erfolg"]
-    D -- nein --> A2["Alert (Mattermost) + Fehlerstatus für fehlende PRs"]
+    R["Renovate runs: scans repo, creates PRs"] --> C["Renovate Operation Check runs"]
+    C --> L["Check each expected PR definition from config.yaml"]
+    L --> D{"All expected PRs present?"}
+    D -- yes --> OK["Success"]
+    D -- no --> A2["Alert (Mattermost) + failure status for missing PRs"]
 ```
 
 ## Run modes and switches
