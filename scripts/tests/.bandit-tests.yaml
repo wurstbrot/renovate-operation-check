@@ -1,5 +1,9 @@
 skips:
-  - B101
+  - B101  # assert: pytest's assertion mechanism
+  - B105  # hardcoded password string: dummy secrets in fixtures
+  - B404  # subprocess import: lint_checker runs flake8/bandit as test tooling
+  - B603  # subprocess without shell: trusted, fixed lint commands
+  - B607  # partial executable path: linters resolved via PATH
 exclude_dirs:
   - venv
   - .venv

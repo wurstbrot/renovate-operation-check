@@ -162,7 +162,7 @@ class CheckPrManager:
                     created_date = datetime.fromtimestamp(created_date / 1000).strftime(
                         "%Y-%m-%d %H:%M:%S"
                     )
-            except Exception:
+            except Exception:  # nosec B110 - best-effort date formatting; fall back to raw value
                 pass
             details.append(f"Created: {created_date}")
 

@@ -1,7 +1,11 @@
 [flake8]
 max-line-length = 100
-# E203/W503 conflict with the black formatter configured in pyproject.toml
-extend-ignore = E501, W503, E203
+# E203/W503 conflict with the black formatter configured in pyproject.toml.
+# S* (flake8-bandit) is ignored on purpose: SAST is owned by the dedicated
+# bandit step in test_quality.sh, which honors .bandit.yaml/.bandit-tests.yaml
+# and the '# nosec' markers. Running it again through flake8 only duplicates
+# findings without respecting that configuration.
+extend-ignore = E501, W503, E203, S
 exclude =
     __pycache__,
     .pytest_cache,

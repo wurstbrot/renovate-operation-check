@@ -485,7 +485,7 @@ class CleanupManager:
         return self._force_reset_branch(target_branch, ref_hash)
 
     def _force_reset_branch(self, target_branch, reference_commit_hash):
-        logger.info(f"Using direct branch update method to reset {target_branch}...")
+        logger.info(f"Using direct branch update method to reset {target_branch}...")  # nosec B608 - log message, not an SQL query
 
         try:
             try:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-PR_CHECK_PASS = "pass"
+PR_CHECK_PASS = "pass"  # nosec B105 - PR check status label, not a password
 PR_CHECK_FAIL = "fail"
 PR_CHECK_WARN = "warn"
 PR_CHECK_SKIP = "skip"
