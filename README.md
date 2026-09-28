@@ -17,6 +17,10 @@ flowchart TD
     L --> D{"All expected PRs present?"}
     D -- yes --> OK["Success"]
     D -- no --> A2["Alert (Mattermost) + failure status for missing PRs"]
+    C --> X["Cleanup: delete already-declined PRs"]
+    X --> E{"--enable-pr-cleanup true?"}
+    E -- yes --> F["Decline renovate PRs + delete branches"]
+    E -- no --> G["Done"]
 ```
 
 ## Run modes and switches
