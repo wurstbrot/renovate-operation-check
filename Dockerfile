@@ -1,6 +1,6 @@
 
 
-FROM docker.io/python:3.14.7-slim AS builder
+FROM docker.io/python:3.14.8-slim AS builder
 
 COPY pip.conf /etc/pip.conf
 WORKDIR /app
@@ -10,7 +10,7 @@ COPY scripts ./scripts/
 
 RUN mkdir /app/python_packages && pip install --no-cache-dir --target=/app/python_packages "."
 
-FROM docker.io/python:3.14.7-slim
+FROM docker.io/python:3.14.8-slim
 
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
